@@ -18,7 +18,7 @@ mongoose
   .then(data => console.log(`Connected to MongoDB`))
   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
-// load the dataabase models we want to deal with
+// load the database models we want to deal with
 const { Message } = require('./models/Message')
 const { User } = require('./models/User')
 
@@ -76,6 +76,16 @@ app.post('/messages/save', async (req, res) => {
       status: 'failed to save the message to the database',
     })
   }
+})
+
+app.get('/aboutus', (req, res) => {
+  // load about me data
+  const aboutus = {
+    name: "Ryan Horng",
+    para: 'I am a senior majoring in Economics and Computer Science. This is my second class with Mr. Bloomberg. I have previously taken his software engineering class last semester. Before attending NYU, I took a year at Rutgers University, but left due to preference and because Rutgers campus was atrocious. I have two dogs named Zoey and Duby, both corgis and hyperactive puppies. I enjoy writing stories in my free time and cooking, though I have been incredibly lazy in both hobbies. I am taking three CS elective courses this semester including this one. Also, the job search is taking the life out of me, somebody please fix this economy.',
+    imageUrl: "https://media.licdn.com/dms/image/C4D03AQHuEtcpJZj2Ww/profile-displayphoto-shrink_200_200/0/1631398391722?e=1713398400&v=beta&t=hylakBzitFU9IHERIR-0AfFmSCl0sj27yzAk-r6HuAo"
+  }
+  res.json(aboutus)
 })
 
 // export the express app we created to make it available to other modules
